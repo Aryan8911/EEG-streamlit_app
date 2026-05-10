@@ -1,0 +1,40 @@
+{
+    "best_model": "ShallowConvNet",
+    "channels": ["C3", "C1", "Cz", "C2", "C4", "FC3", "FC4", "CP3", "CP4"],
+    "sfreq": 160.0,
+    "epoch_tmin": 0.5,
+    "epoch_tmax": 3.5,
+    "filter_fmin": 8.0,
+    "filter_fmax": 30.0,
+    "label_map": {"0": "Left (T1)", "1": "Right (T2)"},
+    "results": [
+        {"model": "LDA", "accuracy": 0.62, "f1": 0.618, "type": "Classical"},
+        {"model": "Random Forest", "accuracy": 0.685, "f1": 0.682, "type": "Classical"},
+        {"model": "MLP", "accuracy": 0.671, "f1": 0.669, "type": "Classical"},
+        {"model": "SVM", "accuracy": 0.659, "f1": 0.656, "type": "Classical"},
+        {"model": "EEGNet", "accuracy": 0.702, "f1": 0.699, "type": "Deep"},
+        {"model": "ShallowConvNet", "accuracy": 0.734, "f1": 0.731, "type": "Deep"},
+        {"model": "DeepConvNet", "accuracy": 0.718, "f1": 0.715, "type": "Deep"},
+        {"model": "BiLSTM", "accuracy": 0.709, "f1": 0.706, "type": "Deep"},
+        {"model": "CNN-Transformer", "accuracy": 0.726, "f1": 0.723, "type": "Deep"}
+    ],
+    "preprocessing": {
+        "filter": "FIR Hamming 8-30 Hz",
+        "reference": "Common Average Reference (CAR)",
+        "normalisation": "Per-subject z-score",
+        "baseline": [0.5, 1.0]
+    },
+    "features": {
+        "n_features": 38,
+        "bands": {
+            "mu": [8, 13],
+            "beta": [13, 30]
+        },
+        "includes_lateralisation": true
+    },
+    "dataset": {
+        "name": "PhysioNet EEG Motor Movement/Imagery",
+        "runs": [4, 8, 12],
+        "task": "Binary classification (T1: Left vs T2: Right)"
+    }
+}
