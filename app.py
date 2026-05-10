@@ -1029,8 +1029,8 @@ def render_sidebar():
         )
         st.session_state['selected_channels'] = selected_channels
         
-        # Time range slider
-        max_duration = st.session_state.get('recording_duration', 60.0)
+        # Time range slider (ensure max > min to avoid Streamlit error)
+        max_duration = max(st.session_state.get('recording_duration', 60.0), 1.0)
         time_range = st.slider(
             "Time Range (seconds)",
             min_value=0.0,
