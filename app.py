@@ -97,399 +97,151 @@ st.set_page_config(
 # =============================================================================
 
 def inject_custom_css():
-    """Inject custom CSS for modern, polished UI with fluid animations."""
+    """Inject minimal, clean CSS styling."""
     st.markdown("""
     <style>
-    /* ===== ROOT VARIABLES ===== */
+    /* Clean, minimal design */
     :root {
-        --primary: #00B4D8;
-        --secondary: #7B2CBF;
-        --accent: #00F5D4;
-        --background: #0D1B2A;
-        --surface: #1B263B;
-        --surface-light: #415A77;
-        --text-primary: #E0E1DD;
-        --text-secondary: #8D99AE;
-        --success: #2EC4B6;
-        --error: #E63946;
-        --warning: #F4A261;
+        --bg: #111;
+        --surface: #1a1a1a;
+        --border: #333;
+        --text: #e5e5e5;
+        --text-muted: #888;
+        --accent: #3b82f6;
+        --success: #22c55e;
+        --error: #ef4444;
     }
     
-    /* ===== KEYFRAME ANIMATIONS ===== */
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-10px) rotate(1deg); }
-        66% { transform: translateY(5px) rotate(-1deg); }
-    }
-    
-    @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.7; transform: scale(1.05); }
-    }
-    
-    @keyframes glow {
-        0%, 100% { box-shadow: 0 0 20px rgba(0, 180, 216, 0.3); }
-        50% { box-shadow: 0 0 40px rgba(0, 180, 216, 0.6), 0 0 60px rgba(123, 44, 191, 0.3); }
-    }
-    
-    @keyframes shimmer {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
-    }
-    
-    @keyframes brainWave {
-        0% { transform: scaleY(1); }
-        25% { transform: scaleY(1.2); }
-        50% { transform: scaleY(0.8); }
-        75% { transform: scaleY(1.1); }
-        100% { transform: scaleY(1); }
-    }
-    
-    @keyframes neuralPulse {
-        0%, 100% { 
-            filter: drop-shadow(0 0 8px rgba(0, 180, 216, 0.5));
-            opacity: 0.8;
-        }
-        50% { 
-            filter: drop-shadow(0 0 20px rgba(0, 245, 212, 0.8));
-            opacity: 1;
-        }
-    }
-    
-    @keyframes dataStream {
-        0% { transform: translateX(-100%); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateX(100%); opacity: 0; }
-    }
-    
-    @keyframes orbFloat {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        25% { transform: translate(30px, -20px) scale(1.1); }
-        50% { transform: translate(-20px, 20px) scale(0.9); }
-        75% { transform: translate(10px, -10px) scale(1.05); }
-    }
-    
-    /* ===== MAIN CONTAINER WITH ANIMATED BG ===== */
     .stApp {
-        background: linear-gradient(-45deg, #0D1B2A, #1B263B, #0D1B2A, #162032);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
-        min-height: 100vh;
+        background: var(--bg);
     }
     
     .main .block-container {
         padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 1400px;
-        position: relative;
+        max-width: 1200px;
     }
     
-    /* ===== FLOATING ORBS BACKGROUND ===== */
-    .floating-orbs {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        overflow: hidden;
-    }
-    
-    .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.4;
-        animation: orbFloat 20s ease-in-out infinite;
-    }
-    
-    .orb-1 {
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(0, 180, 216, 0.4) 0%, transparent 70%);
-        top: 10%;
-        left: 10%;
-        animation-delay: 0s;
-    }
-    
-    .orb-2 {
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(123, 44, 191, 0.3) 0%, transparent 70%);
-        top: 60%;
-        right: 15%;
-        animation-delay: -5s;
-    }
-    
-    .orb-3 {
-        width: 250px;
-        height: 250px;
-        background: radial-gradient(circle, rgba(0, 245, 212, 0.3) 0%, transparent 70%);
-        bottom: 10%;
-        left: 30%;
-        animation-delay: -10s;
-    }
-    
-    /* ===== NEURAL NETWORK LINES ===== */
-    .neural-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.1;
-        background-image: 
-            radial-gradient(circle at 20% 30%, rgba(0, 180, 216, 0.3) 1px, transparent 1px),
-            radial-gradient(circle at 80% 70%, rgba(123, 44, 191, 0.3) 1px, transparent 1px),
-            radial-gradient(circle at 50% 50%, rgba(0, 245, 212, 0.2) 1px, transparent 1px);
-        background-size: 100px 100px, 150px 150px, 80px 80px;
-        animation: gradientShift 30s linear infinite;
-    }
-    
-    /* ===== SIDEBAR ===== */
+    /* Sidebar */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, rgba(27, 38, 59, 0.95) 0%, rgba(13, 27, 42, 0.98) 100%);
-        border-right: 1px solid rgba(0, 180, 216, 0.2);
-        backdrop-filter: blur(20px);
-    }
-    
-    [data-testid="stSidebar"]::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #00B4D8, #7B2CBF, #00F5D4);
-        background-size: 200% 100%;
-        animation: shimmer 3s linear infinite;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
     }
     
     [data-testid="stSidebar"] .stMarkdown {
-        color: #E0E1DD;
+        color: var(--text);
     }
     
-    /* ===== HEADERS ===== */
-    h1 {
-        background: linear-gradient(90deg, #00B4D8 0%, #00F5D4 50%, #7B2CBF 100%);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 800;
-        letter-spacing: -1px;
-        animation: shimmer 4s linear infinite;
+    /* Headers */
+    h1, h2, h3 {
+        color: var(--text) !important;
+        font-weight: 600;
     }
     
-    h2, h3 {
-        color: #E0E1DD !important;
-        border-bottom: 2px solid transparent;
-        border-image: linear-gradient(90deg, rgba(0, 180, 216, 0.5), transparent) 1;
-        padding-bottom: 10px;
-        position: relative;
+    /* Cards */
+    .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 12px 0;
     }
     
-    h2::after, h3::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 60px;
-        height: 2px;
-        background: linear-gradient(90deg, #00B4D8, #7B2CBF);
-        animation: pulse 2s ease-in-out infinite;
-    }
-    
-    /* ===== GLASSMORPHISM CARDS ===== */
-    .glass-card {
-        background: rgba(27, 38, 59, 0.6);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 180, 216, 0.15);
-        border-radius: 20px;
-        padding: 24px;
-        margin: 16px 0;
-        box-shadow: 
-            0 8px 32px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .glass-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(0, 180, 216, 0.1),
-            transparent
-        );
-        transition: left 0.5s ease;
-    }
-    
-    .glass-card:hover {
-        border-color: rgba(0, 180, 216, 0.4);
-        box-shadow: 
-            0 12px 40px rgba(0, 180, 216, 0.15),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transform: translateY(-4px);
-    }
-    
-    .glass-card:hover::before {
-        left: 100%;
-    }
-    
-    /* ===== METRIC CARDS ===== */
+    /* Metric cards */
     .metric-card {
-        background: linear-gradient(135deg, rgba(27, 38, 59, 0.8) 0%, rgba(13, 27, 42, 0.9) 100%);
-        border: 1px solid rgba(0, 180, 216, 0.2);
-        border-radius: 16px;
-        padding: 24px 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
         text-align: center;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .metric-card::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #00B4D8, #7B2CBF);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
-    
-    .metric-card:hover {
-        border-color: var(--primary);
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 12px 40px rgba(0, 180, 216, 0.2);
-    }
-    
-    .metric-card:hover::after {
-        transform: scaleX(1);
     }
     
     .metric-title {
-        color: #8D99AE;
-        font-size: 11px;
+        color: var(--text-muted);
+        font-size: 12px;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 12px;
-        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
     }
     
     .metric-value {
-        color: #00B4D8;
-        font-size: 36px;
-        font-weight: 700;
-        margin: 8px 0;
-        text-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
-        animation: pulse 3s ease-in-out infinite;
+        color: var(--text);
+        font-size: 28px;
+        font-weight: 600;
     }
     
     .metric-subtitle {
-        color: #E0E1DD;
+        color: var(--text-muted);
         font-size: 11px;
-        opacity: 0.8;
+        margin-top: 4px;
     }
     
-    /* ===== LIVE INDICATOR ===== */
-    .live-indicator {
+    /* Header section */
+    .header-section {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .header-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+    }
+    
+    .header-subtitle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+    
+    /* Status indicator */
+    .status {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 6px 14px;
-        background: rgba(46, 196, 182, 0.15);
-        border: 1px solid rgba(46, 196, 182, 0.4);
-        border-radius: 20px;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 4px;
         font-size: 12px;
-        color: #2EC4B6;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        font-weight: 500;
     }
     
-    .live-dot {
-        width: 8px;
-        height: 8px;
-        background: #2EC4B6;
+    .status-ready {
+        background: rgba(34, 197, 94, 0.1);
+        color: var(--success);
+    }
+    
+    .status-dot {
+        width: 6px;
+        height: 6px;
+        background: currentColor;
         border-radius: 50%;
-        animation: pulse 1.5s ease-in-out infinite;
-        box-shadow: 0 0 10px #2EC4B6;
     }
     
-    /* ===== PIPELINE STEPS ===== */
+    /* Pipeline steps */
     .pipeline-step {
-        background: rgba(27, 38, 59, 0.5);
-        border: 1px solid rgba(0, 245, 212, 0.15);
-        border-radius: 16px;
-        padding: 20px;
-        margin: 10px 0;
         display: flex;
-        align-items: center;
-        gap: 16px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
     }
     
-    .pipeline-step::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: linear-gradient(180deg, #00B4D8, #7B2CBF);
-        transform: scaleY(0);
-        transition: transform 0.3s ease;
-    }
-    
-    .pipeline-step:hover {
-        border-color: var(--accent);
-        background: rgba(0, 245, 212, 0.05);
-        transform: translateX(8px);
-    }
-    
-    .pipeline-step:hover::before {
-        transform: scaleY(1);
+    .pipeline-step:last-child {
+        border-bottom: none;
     }
     
     .step-number {
-        background: linear-gradient(135deg, #00B4D8, #7B2CBF);
+        background: var(--accent);
         color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
-        font-size: 14px;
+        font-size: 12px;
+        font-weight: 600;
         flex-shrink: 0;
-        box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-        animation: float 6s ease-in-out infinite;
     }
     
     .step-content {
@@ -497,426 +249,129 @@ def inject_custom_css():
     }
     
     .step-name {
-        color: #E0E1DD;
-        font-weight: 600;
+        color: var(--text);
+        font-weight: 500;
         font-size: 14px;
-        margin-bottom: 4px;
     }
     
     .step-desc {
-        color: #8D99AE;
+        color: var(--text-muted);
         font-size: 12px;
-        line-height: 1.4;
+        margin-top: 2px;
     }
     
-    /* ===== FILE UPLOADER ===== */
+    /* File uploader */
     [data-testid="stFileUploader"] {
-        background: rgba(27, 38, 59, 0.4);
-        border: 2px dashed rgba(0, 180, 216, 0.3);
-        border-radius: 16px;
-        padding: 24px;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
+        background: var(--surface);
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        padding: 16px;
     }
     
-    [data-testid="stFileUploader"]::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(45deg, 
-            transparent 40%, 
-            rgba(0, 180, 216, 0.1) 50%, 
-            transparent 60%);
-        background-size: 200% 200%;
-        animation: shimmer 3s linear infinite;
-        pointer-events: none;
-    }
-    
-    [data-testid="stFileUploader"]:hover {
-        border-color: var(--primary);
-        background: rgba(0, 180, 216, 0.08);
-        transform: scale(1.01);
-    }
-    
-    /* ===== BUTTONS ===== */
+    /* Buttons */
     .stButton > button {
-        background: linear-gradient(135deg, #00B4D8 0%, #7B2CBF 100%);
-        background-size: 200% 200%;
+        background: var(--accent);
         color: white;
         border: none;
-        border-radius: 12px;
-        padding: 14px 28px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .stButton > button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-        );
-        transition: left 0.5s ease;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-weight: 500;
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 30px rgba(0, 180, 216, 0.4);
-        animation: glow 2s ease-in-out infinite;
+        background: #2563eb;
     }
     
-    .stButton > button:hover::before {
-        left: 100%;
-    }
-    
-    .stButton > button:active {
-        transform: translateY(-1px);
-    }
-    
-    /* ===== SELECTBOX & INPUTS ===== */
-    .stSelectbox > div > div {
-        background: rgba(27, 38, 59, 0.7);
-        border: 1px solid rgba(0, 180, 216, 0.2);
-        border-radius: 10px;
-        color: #E0E1DD;
-        transition: all 0.3s ease;
-    }
-    
-    .stSelectbox > div > div:hover {
-        border-color: rgba(0, 180, 216, 0.5);
-    }
-    
-    .stSlider > div > div > div {
-        background: linear-gradient(90deg, #00B4D8, #7B2CBF);
-        border-radius: 10px;
-    }
-    
+    /* Inputs */
+    .stSelectbox > div > div,
     .stMultiSelect > div > div {
-        background: rgba(27, 38, 59, 0.7);
-        border: 1px solid rgba(0, 180, 216, 0.2);
-        border-radius: 10px;
-        transition: all 0.3s ease;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--text);
     }
     
-    .stMultiSelect > div > div:hover {
-        border-color: rgba(0, 180, 216, 0.5);
-    }
-    
-    /* ===== TABS ===== */
+    /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        background: rgba(27, 38, 59, 0.4);
-        border-radius: 16px;
-        padding: 6px;
-        gap: 6px;
-        backdrop-filter: blur(10px);
+        background: transparent;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
     }
     
     .stTabs [data-baseweb="tab"] {
         background: transparent;
-        color: #8D99AE;
-        border-radius: 10px;
-        padding: 12px 24px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background: rgba(0, 180, 216, 0.1);
-        color: #E0E1DD;
+        color: var(--text-muted);
+        border-radius: 0;
+        border-bottom: 2px solid transparent;
+        padding: 12px 16px;
     }
     
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, rgba(0, 180, 216, 0.25), rgba(123, 44, 191, 0.25));
-        color: #E0E1DD;
-        box-shadow: 0 4px 15px rgba(0, 180, 216, 0.2);
+        color: var(--text);
+        border-bottom-color: var(--accent);
+        background: transparent;
     }
     
-    /* ===== DATAFRAME ===== */
-    .stDataFrame {
-        background: rgba(27, 38, 59, 0.4);
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(0, 180, 216, 0.1);
-    }
-    
-    /* ===== EXPANDER ===== */
-    .streamlit-expanderHeader {
-        background: rgba(27, 38, 59, 0.6);
-        border-radius: 12px;
-        color: #E0E1DD;
-        transition: all 0.3s ease;
-    }
-    
-    .streamlit-expanderHeader:hover {
-        background: rgba(0, 180, 216, 0.1);
-    }
-    
-    /* ===== ALERTS ===== */
-    .stAlert {
-        border-radius: 12px;
-        border: none;
-        backdrop-filter: blur(10px);
-    }
-    
-    /* ===== SPINNER ===== */
-    .stSpinner > div {
-        border-color: #00B4D8 transparent transparent transparent;
-    }
-    
-    /* ===== HERO SECTION ===== */
-    .hero-section {
-        background: linear-gradient(135deg, rgba(0, 180, 216, 0.08) 0%, rgba(123, 44, 191, 0.08) 100%);
-        border: 1px solid rgba(0, 180, 216, 0.15);
-        border-radius: 24px;
-        padding: 50px 40px;
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(20px);
-    }
-    
-    .hero-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 50%);
-        animation: orbFloat 15s ease-in-out infinite;
-    }
-    
-    .hero-title {
-        font-size: 2.8rem;
-        font-weight: 800;
-        background: linear-gradient(90deg, #00B4D8, #00F5D4, #7B2CBF, #00B4D8);
-        background-size: 300% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 12px;
-        animation: shimmer 4s linear infinite;
-        position: relative;
-        z-index: 1;
-    }
-    
-    .hero-subtitle {
-        color: #8D99AE;
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
-    }
-    
-    .hero-description {
-        color: #E0E1DD;
-        font-size: 0.95rem;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.7;
-        position: relative;
-        z-index: 1;
-    }
-    
-    /* ===== BRAIN WAVE ANIMATION ===== */
-    .brain-wave-container {
-        display: flex;
-        justify-content: center;
-        gap: 4px;
-        margin: 20px 0;
-    }
-    
-    .brain-wave-bar {
-        width: 4px;
-        height: 30px;
-        background: linear-gradient(180deg, #00B4D8, #7B2CBF);
-        border-radius: 2px;
-        animation: brainWave 1s ease-in-out infinite;
-    }
-    
-    .brain-wave-bar:nth-child(1) { animation-delay: 0s; }
-    .brain-wave-bar:nth-child(2) { animation-delay: 0.1s; }
-    .brain-wave-bar:nth-child(3) { animation-delay: 0.2s; }
-    .brain-wave-bar:nth-child(4) { animation-delay: 0.3s; }
-    .brain-wave-bar:nth-child(5) { animation-delay: 0.4s; }
-    .brain-wave-bar:nth-child(6) { animation-delay: 0.5s; }
-    .brain-wave-bar:nth-child(7) { animation-delay: 0.4s; }
-    .brain-wave-bar:nth-child(8) { animation-delay: 0.3s; }
-    .brain-wave-bar:nth-child(9) { animation-delay: 0.2s; }
-    .brain-wave-bar:nth-child(10) { animation-delay: 0.1s; }
-    
-    /* ===== STATUS BADGES ===== */
-    .status-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
-    .status-success {
-        background: rgba(46, 196, 182, 0.15);
-        color: #2EC4B6;
-        border: 1px solid rgba(46, 196, 182, 0.3);
-        animation: pulse 2s ease-in-out infinite;
-    }
-    
-    .status-warning {
-        background: rgba(244, 162, 97, 0.15);
-        color: #F4A261;
-        border: 1px solid rgba(244, 162, 97, 0.3);
-    }
-    
-    .status-error {
-        background: rgba(230, 57, 70, 0.15);
-        color: #E63946;
-        border: 1px solid rgba(230, 57, 70, 0.3);
-    }
-    
-    /* ===== DATA STREAM EFFECT ===== */
-    .data-stream {
-        position: relative;
-        overflow: hidden;
-        padding: 20px;
-        background: rgba(27, 38, 59, 0.5);
-        border-radius: 12px;
-        border: 1px solid rgba(0, 180, 216, 0.2);
-    }
-    
-    .data-stream::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #00B4D8, #7B2CBF, transparent);
-        animation: dataStream 3s linear infinite;
-    }
-    
-    /* ===== ANNOTATION TABLE ===== */
+    /* Tables */
     .annotation-table {
         width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        margin: 16px 0;
+        border-collapse: collapse;
+        font-size: 13px;
     }
     
     .annotation-table th {
-        background: rgba(0, 180, 216, 0.15);
-        color: #E0E1DD;
-        padding: 14px;
+        background: var(--surface);
+        color: var(--text-muted);
+        padding: 10px 12px;
         text-align: left;
-        font-weight: 600;
-        border-bottom: 2px solid rgba(0, 180, 216, 0.2);
+        font-weight: 500;
+        border-bottom: 1px solid var(--border);
     }
     
     .annotation-table td {
-        background: rgba(27, 38, 59, 0.4);
-        color: #E0E1DD;
+        color: var(--text);
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    /* Info box */
+    .info-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
         padding: 14px;
-        border-bottom: 1px solid rgba(0, 180, 216, 0.08);
-        transition: all 0.3s ease;
+        margin-top: 16px;
     }
     
-    .annotation-table tr:hover td {
-        background: rgba(0, 180, 216, 0.1);
+    .info-box-title {
+        color: var(--text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
     }
     
-    /* ===== NEURAL ICON ===== */
-    .neural-icon {
-        font-size: 3rem;
-        animation: neuralPulse 2s ease-in-out infinite;
+    .info-box-content {
+        color: var(--text-muted);
+        font-size: 12px;
+        line-height: 1.5;
     }
     
-    /* ===== PROGRESS RING ===== */
-    .progress-ring {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: conic-gradient(from 0deg, #00B4D8 0%, #7B2CBF 70%, rgba(27, 38, 59, 0.5) 70%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: float 4s ease-in-out infinite;
-    }
-    
-    .progress-ring-inner {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: #1B263B;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #E0E1DD;
-        font-weight: 700;
-        font-size: 14px;
-    }
-    
-    /* ===== SCROLLBAR ===== */
+    /* Scrollbar */
     ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
     }
     
     ::-webkit-scrollbar-track {
-        background: #1B263B;
-        border-radius: 5px;
+        background: var(--bg);
     }
     
     ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #00B4D8, #7B2CBF);
-        border-radius: 5px;
-        border: 2px solid #1B263B;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #00F5D4, #00B4D8);
-    }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 2rem;
-        }
-        
-        .metric-value {
-            font-size: 28px;
-        }
-        
-        .orb {
-            opacity: 0.2;
-        }
+        background: var(--border);
+        border-radius: 4px;
     }
     </style>
-    """, unsafe_allow_html=True)
-    
-    # Inject animated background elements
-    st.markdown("""
-    <div class="floating-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
-    <div class="neural-bg"></div>
     """, unsafe_allow_html=True)
 
 
@@ -945,33 +400,18 @@ def main():
 
 
 def render_header():
-    """Render the hero header section with animated elements."""
+    """Render clean header section."""
     st.markdown("""
-    <div class="hero-section">
-        <div class="neural-icon">🧠</div>
-        <div class="brain-wave-container">
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
-            <div class="brain-wave-bar"></div>
+    <div class="header-section">
+        <div class="header-title">EEG Motor Imagery Analysis</div>
+        <div class="header-subtitle">
+            PhysioNet Motor Movement/Imagery Dataset - Left vs Right Hand Classification
         </div>
-        <div class="hero-title">EEG Motor Imagery Prediction</div>
-        <div class="hero-subtitle">PhysioNet EEG Motor Movement/Imagery Dataset — Left vs Right Hand Classification</div>
-        <div style="margin: 20px 0;">
-            <span class="live-indicator">
-                <span class="live-dot"></span>
-                Ready for Analysis
+        <div style="margin-top: 12px;">
+            <span class="status status-ready">
+                <span class="status-dot"></span>
+                Ready
             </span>
-        </div>
-        <div class="hero-description">
-            An advanced biomedical AI dashboard for analyzing EEG signals and classifying motor imagery tasks.
-            Upload your EDF files to visualize brain activity and predict imagined hand movements using state-of-the-art machine learning models.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -981,30 +421,15 @@ def render_sidebar():
     """Render the sidebar with controls."""
     
     with st.sidebar:
-        # Logo/Branding with animated elements
         st.markdown("""
-        <div style="text-align: center; padding: 24px 0; border-bottom: 1px solid rgba(0,180,216,0.2); margin-bottom: 24px; position: relative;">
-            <div class="neural-icon" style="font-size: 2.5rem; margin-bottom: 8px;">🧠</div>
-            <div class="brain-wave-container" style="margin: 12px 0;">
-                <div class="brain-wave-bar" style="height: 20px;"></div>
-                <div class="brain-wave-bar" style="height: 20px;"></div>
-                <div class="brain-wave-bar" style="height: 20px;"></div>
-                <div class="brain-wave-bar" style="height: 20px;"></div>
-                <div class="brain-wave-bar" style="height: 20px;"></div>
-            </div>
-            <div style="color: #00B4D8; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px;">EEG Analysis</div>
-            <div style="color: #8D99AE; font-size: 0.8rem; margin-top: 4px;">Motor Imagery Dashboard</div>
-            <div style="margin-top: 12px;">
-                <span class="live-indicator" style="font-size: 10px; padding: 4px 10px;">
-                    <span class="live-dot" style="width: 6px; height: 6px;"></span>
-                    System Active
-                </span>
-            </div>
+        <div style="padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid #333;">
+            <div style="font-size: 16px; font-weight: 600; color: #e5e5e5;">EEG Analysis</div>
+            <div style="font-size: 12px; color: #888; margin-top: 2px;">Motor Imagery Dashboard</div>
         </div>
         """, unsafe_allow_html=True)
         
         # File Upload Section
-        st.markdown("### 📁 Upload EDF File")
+        st.markdown("### Upload EDF File")
         uploaded_file = st.file_uploader(
             "Drag and drop your EDF file here",
             type=['edf'],
@@ -1017,7 +442,7 @@ def render_sidebar():
         st.markdown("---")
         
         # EEG Controls
-        st.markdown("### 🎛️ EEG Controls")
+        st.markdown("### EEG Controls")
         
         # Channel selector
         available_channels = st.session_state.get('available_channels', MI_CHANNELS)
@@ -1044,7 +469,7 @@ def render_sidebar():
         st.markdown("---")
         
         # Visualization Toggles
-        st.markdown("### 📊 Visualization Options")
+        st.markdown("### Visualization")
         
         show_filtered = st.checkbox("Show Filtered Signal", value=True)
         show_psd = st.checkbox("Show PSD Analysis", value=True)
@@ -1057,7 +482,7 @@ def render_sidebar():
         st.markdown("---")
         
         # Model Controls
-        st.markdown("### 🤖 Model Controls")
+        st.markdown("### Model")
         
         # Build model options dynamically from whatever is loaded
         models_result = _cached_load_models()
@@ -1072,24 +497,20 @@ def render_sidebar():
         st.session_state['selected_model'] = selected_model
         
         # Run Prediction Button
-        if st.button("🚀 Run Prediction", use_container_width=True):
+        if st.button("Run Prediction", use_container_width=True):
             run_prediction_pipeline()
         
         st.markdown("---")
         
-        # Info Section with data stream effect
+        # Info Section
         st.markdown("""
-        <div class="data-stream" style="margin-top: 20px;">
-            <div style="color: #00B4D8; font-weight: 600; font-size: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                <span style="display: inline-block; width: 8px; height: 8px; background: linear-gradient(135deg, #00B4D8, #7B2CBF); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite;"></span>
-                ABOUT THIS TOOL
-            </div>
-            <div style="color: #8D99AE; font-size: 11px; line-height: 1.6;">
-                This application analyzes motor imagery EEG data for binary classification between left (T1) and right (T2) hand imagery tasks using advanced signal processing and machine learning.
-            </div>
-            <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <span class="status-badge status-success" style="font-size: 9px; padding: 3px 8px;">ML Ready</span>
-                <span class="status-badge" style="font-size: 9px; padding: 3px 8px; background: rgba(123, 44, 191, 0.15); color: #7B2CBF; border: 1px solid rgba(123, 44, 191, 0.3);">8-30 Hz Filter</span>
+        <div class="info-box">
+            <div class="info-box-title">About</div>
+            <div class="info-box-content">
+                Analyzes motor imagery EEG data for binary classification 
+                between left (T1) and right (T2) hand imagery tasks.
+                <br><br>
+                Bandpass filter: 8-30 Hz
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1219,11 +640,11 @@ def render_main_content():
     
     # Create tabs
     tabs = st.tabs([
-        "📋 Dataset Info",
-        "📈 Signal Visualization",
-        "⚙️ Pipeline Overview",
-        "📊 Model Summary",
-        "🎯 Prediction Results"
+        "Dataset Info",
+        "Signal Visualization",
+        "Pipeline Overview",
+        "Model Summary",
+        "Prediction Results"
     ])
     
     with tabs[0]:
@@ -1252,7 +673,7 @@ def render_dataset_info():
         annotations = st.session_state.get('annotations', pd.DataFrame())
         
         # File info card
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        st.markdown('<div class="card">', unsafe_allow_html=True)
         
         col1, col2, col3, col4 = st.columns(4)
         
@@ -1320,20 +741,9 @@ def render_dataset_info():
     else:
         # Placeholder when no file is uploaded
         st.markdown("""
-        <div class="glass-card" style="text-align: center; padding: 80px 40px;">
-            <div class="neural-icon" style="margin-bottom: 20px;">📁</div>
-            <div class="brain-wave-container" style="margin: 20px auto; opacity: 0.5;">
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-            </div>
-            <div style="color: #E0E1DD; font-size: 1.3rem; margin-bottom: 12px; font-weight: 600;">No File Uploaded</div>
-            <div style="color: #8D99AE; max-width: 400px; margin: 0 auto; line-height: 1.6;">Upload an EDF file using the sidebar to view dataset information and begin analysis.</div>
-            <div style="margin-top: 20px;">
-                <span class="status-badge status-warning">Awaiting Data</span>
-            </div>
+        <div class="card" style="text-align: center; padding: 60px 40px;">
+            <div style="font-size: 14px; color: #888; margin-bottom: 8px;">No file uploaded</div>
+            <div style="color: #e5e5e5; font-size: 13px;">Upload an EDF file from the sidebar to begin analysis.</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1408,20 +818,9 @@ def render_signal_visualization():
             st.info("Please select channels from the sidebar to visualize.")
     else:
         st.markdown("""
-        <div class="glass-card" style="text-align: center; padding: 80px 40px;">
-            <div class="neural-icon" style="margin-bottom: 20px;">📈</div>
-            <div class="brain-wave-container" style="margin: 20px auto; opacity: 0.5;">
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-            </div>
-            <div style="color: #E0E1DD; font-size: 1.3rem; margin-bottom: 12px; font-weight: 600;">No Data to Display</div>
-            <div style="color: #8D99AE; max-width: 400px; margin: 0 auto; line-height: 1.6;">Upload an EDF file to visualize EEG signals with interactive charts and event markers.</div>
-            <div style="margin-top: 20px;">
-                <span class="status-badge status-warning">Awaiting Data</span>
-            </div>
+        <div class="card" style="text-align: center; padding: 60px 40px;">
+            <div style="font-size: 14px; color: #888; margin-bottom: 8px;">No data to display</div>
+            <div style="color: #e5e5e5; font-size: 13px;">Upload an EDF file to visualize EEG signals.</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1430,68 +829,51 @@ def render_pipeline_overview():
     """Render the preprocessing pipeline overview."""
     
     st.markdown("## Preprocessing Pipeline")
-    st.markdown("""
-    <div style="color: #8D99AE; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
-        <span class="live-indicator">
-            <span class="live-dot"></span>
-            Pipeline Ready
-        </span>
-        <span style="font-size: 14px;">The following steps are executed when processing EEG data:</span>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<p style="color: #888; margin-bottom: 20px;">Steps executed when processing EEG data:</p>', unsafe_allow_html=True)
     
     pipeline_steps = get_pipeline_steps()
     
-    # Display pipeline as connected cards
-    cols = st.columns(4)
-    
-    for i, step in enumerate(pipeline_steps):
-        with cols[i % 4]:
-            st.markdown(f"""
-            <div class="pipeline-step">
-                <div class="step-number">{step['step']}</div>
-                <div class="step-content">
-                    <div class="step-name">{step['icon']} {step['name']}</div>
-                    <div class="step-desc">{step['description']}</div>
-                </div>
+    # Display pipeline steps
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    for step in pipeline_steps:
+        st.markdown(f"""
+        <div class="pipeline-step">
+            <div class="step-number">{step['step']}</div>
+            <div class="step-content">
+                <div class="step-name">{step['name']}</div>
+                <div class="step-desc">{step['description']}</div>
             </div>
-            """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Configuration details
-    st.markdown("### Current Configuration")
+    st.markdown("### Configuration")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        <div class="glass-card" style="position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-            <h4 style="color: #00B4D8; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
-                <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: linear-gradient(135deg, rgba(0, 180, 216, 0.2), rgba(0, 180, 216, 0.1)); border-radius: 8px;">⚡</span>
-                Preprocessing Settings
-            </h4>
-            <table style="width: 100%; color: #E0E1DD;">
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Bandpass Filter</td><td style="text-align: right; font-weight: 500;">8-30 Hz</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Notch Filter</td><td style="text-align: right; font-weight: 500;">None</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Epoch Duration</td><td style="text-align: right; font-weight: 500;">4.0 seconds</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Baseline Correction</td><td style="text-align: right; font-weight: 500;">None</td></tr>
+        <div class="card">
+            <h4 style="color: #e5e5e5; margin-bottom: 16px; font-size: 14px; font-weight: 600;">Preprocessing</h4>
+            <table style="width: 100%; color: #e5e5e5; font-size: 13px;">
+                <tr><td style="padding: 8px 0; color: #888;">Bandpass Filter</td><td style="text-align: right;">8-30 Hz</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Notch Filter</td><td style="text-align: right;">None</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Epoch Duration</td><td style="text-align: right;">4.0 seconds</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Baseline Correction</td><td style="text-align: right;">None</td></tr>
             </table>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        <div class="glass-card" style="position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle, rgba(123, 44, 191, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-            <h4 style="color: #7B2CBF; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
-                <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: linear-gradient(135deg, rgba(123, 44, 191, 0.2), rgba(123, 44, 191, 0.1)); border-radius: 8px;">🔬</span>
-                Feature Extraction
-            </h4>
-            <table style="width: 100%; color: #E0E1DD;">
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Feature Type</td><td style="text-align: right; font-weight: 500;">Bandpower</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Mu Band</td><td style="text-align: right; font-weight: 500;">8-13 Hz</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Beta Band</td><td style="text-align: right; font-weight: 500;">13-30 Hz</td></tr>
-                <tr><td style="padding: 10px 0; color: #8D99AE;">Relative Power</td><td style="text-align: right; font-weight: 500;">Yes</td></tr>
+        <div class="card">
+            <h4 style="color: #e5e5e5; margin-bottom: 16px; font-size: 14px; font-weight: 600;">Feature Extraction</h4>
+            <table style="width: 100%; color: #e5e5e5; font-size: 13px;">
+                <tr><td style="padding: 8px 0; color: #888;">Feature Type</td><td style="text-align: right;">Bandpower</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Mu Band</td><td style="text-align: right;">8-13 Hz</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Beta Band</td><td style="text-align: right;">13-30 Hz</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Relative Power</td><td style="text-align: right;">Yes</td></tr>
             </table>
         </div>
         """, unsafe_allow_html=True)
@@ -1528,24 +910,20 @@ def render_model_summary():
         if results_df['accuracy'].max() > 0:
             best_model = results_df.loc[results_df['accuracy'].idxmax()]
             st.markdown(f"""
-            <div class="glass-card" style="border-color: rgba(46, 196, 182, 0.4); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -20px; right: -20px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(46, 196, 182, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
-                <h4 style="color: #2EC4B6; display: flex; align-items: center; gap: 10px;">
-                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: linear-gradient(135deg, rgba(46, 196, 182, 0.3), rgba(46, 196, 182, 0.1)); border-radius: 10px; animation: pulse 2s ease-in-out infinite;">🏆</span>
-                    Best Performing Model
-                </h4>
-                <div style="display: flex; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 20px;">
-                    <div style="flex: 1; min-width: 120px;">
-                        <div style="color: #8D99AE; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Model</div>
-                        <div style="color: #E0E1DD; font-size: 20px; font-weight: 600; margin-top: 4px;">{best_model['model_name']}</div>
+            <div class="card" style="border-left: 3px solid #22c55e;">
+                <h4 style="color: #e5e5e5; margin-bottom: 16px; font-size: 14px;">Best Performing Model</h4>
+                <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+                    <div>
+                        <div style="color: #888; font-size: 11px; text-transform: uppercase;">Model</div>
+                        <div style="color: #e5e5e5; font-size: 18px; font-weight: 600; margin-top: 4px;">{best_model['model_name']}</div>
                     </div>
-                    <div style="flex: 1; min-width: 120px;">
-                        <div style="color: #8D99AE; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Accuracy</div>
-                        <div style="color: #2EC4B6; font-size: 20px; font-weight: 600; margin-top: 4px; text-shadow: 0 0 20px rgba(46, 196, 182, 0.3);">{best_model['accuracy']:.1%}</div>
+                    <div>
+                        <div style="color: #888; font-size: 11px; text-transform: uppercase;">Accuracy</div>
+                        <div style="color: #22c55e; font-size: 18px; font-weight: 600; margin-top: 4px;">{best_model['accuracy']:.1%}</div>
                     </div>
-                    <div style="flex: 1; min-width: 120px;">
-                        <div style="color: #8D99AE; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">F1 Score</div>
-                        <div style="color: #00B4D8; font-size: 20px; font-weight: 600; margin-top: 4px; text-shadow: 0 0 20px rgba(0, 180, 216, 0.3);">{best_model['f1_score']:.1%}</div>
+                    <div>
+                        <div style="color: #888; font-size: 11px; text-transform: uppercase;">F1 Score</div>
+                        <div style="color: #3b82f6; font-size: 18px; font-weight: 600; margin-top: 4px;">{best_model['f1_score']:.1%}</div>
                     </div>
                 </div>
             </div>
@@ -1597,27 +975,27 @@ def render_prediction_results():
         
         with col2:
             st.markdown(f"""
-            <div class="metric-card" style="border-color: #7B2CBF;">
+            <div class="metric-card">
                 <div class="metric-title">F1 Score</div>
-                <div class="metric-value" style="color: #7B2CBF;">{accuracy:.1%}</div>
+                <div class="metric-value">{accuracy:.1%}</div>
                 <div class="metric-subtitle">Weighted</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown(f"""
-            <div class="metric-card" style="border-color: #2EC4B6;">
+            <div class="metric-card">
                 <div class="metric-title">Correct</div>
-                <div class="metric-value" style="color: #2EC4B6;">{correct_count}</div>
+                <div class="metric-value" style="color: #22c55e;">{correct_count}</div>
                 <div class="metric-subtitle">epochs</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col4:
             st.markdown(f"""
-            <div class="metric-card" style="border-color: #E63946;">
+            <div class="metric-card">
                 <div class="metric-title">Total</div>
-                <div class="metric-value" style="color: #E0E1DD;">{total_count}</div>
+                <div class="metric-value">{total_count}</div>
                 <div class="metric-subtitle">epochs</div>
             </div>
             """, unsafe_allow_html=True)
@@ -1656,20 +1034,9 @@ def render_prediction_results():
         
     else:
         st.markdown("""
-        <div class="glass-card" style="text-align: center; padding: 80px 40px;">
-            <div class="neural-icon" style="margin-bottom: 20px;">🎯</div>
-            <div class="brain-wave-container" style="margin: 20px auto; opacity: 0.5;">
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-                <div class="brain-wave-bar" style="height: 15px; background: linear-gradient(180deg, #8D99AE, #415A77);"></div>
-            </div>
-            <div style="color: #E0E1DD; font-size: 1.3rem; margin-bottom: 12px; font-weight: 600;">No Predictions Yet</div>
-            <div style="color: #8D99AE; max-width: 400px; margin: 0 auto; line-height: 1.6;">Upload an EDF file and click "Run Prediction" to classify motor imagery tasks with machine learning.</div>
-            <div style="margin-top: 20px;">
-                <span class="status-badge status-warning">Awaiting Prediction</span>
-            </div>
+        <div class="card" style="text-align: center; padding: 60px 40px;">
+            <div style="font-size: 14px; color: #888; margin-bottom: 8px;">No predictions yet</div>
+            <div style="color: #e5e5e5; font-size: 13px;">Upload an EDF file and click "Run Prediction" to begin.</div>
         </div>
         """, unsafe_allow_html=True)
 

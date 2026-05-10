@@ -14,20 +14,20 @@ from plotly.subplots import make_subplots
 from typing import Dict, List, Tuple, Optional, Any
 
 
-# Color palette for consistent styling (matching app CSS)
+# Minimal color palette
 COLORS = {
-    'primary': '#00B4D8',      # Cyan
-    'secondary': '#7B2CBF',    # Deep purple
-    'accent': '#00F5D4',       # Teal
-    'background': '#0D1B2A',   # Dark blue
-    'surface': '#1B263B',      # Lighter dark
-    'left': '#4A90D9',         # Left class - steelblue
-    'right': '#E84040',        # Right class - tomato
-    'correct': '#2EC4B6',      # Correct prediction - teal
-    'incorrect': '#E63946',    # Incorrect prediction - red
-    'text': '#E0E1DD',         # Light gray text
-    'muted': '#8D99AE',        # Muted gray
-    'grid': 'rgba(255,255,255,0.1)'
+    'primary': '#3b82f6',      # Blue
+    'secondary': '#6366f1',    # Indigo
+    'accent': '#22c55e',       # Green
+    'background': '#111',      # Dark
+    'surface': '#1a1a1a',      # Surface
+    'left': '#3b82f6',         # Left class - blue
+    'right': '#ef4444',        # Right class - red
+    'correct': '#22c55e',      # Correct - green
+    'incorrect': '#ef4444',    # Incorrect - red
+    'text': '#e5e5e5',         # Light text
+    'muted': '#888',           # Muted gray
+    'grid': 'rgba(255,255,255,0.06)'
 }
 
 
